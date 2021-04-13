@@ -1,5 +1,6 @@
 package jb.games.tickettoride.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
@@ -19,6 +20,7 @@ public class Rail {
 
 
     public Rail(float x, float y, float rotation) {
+        pos = new Vector2(x,y);
         selected = false;
         texture = new Texture("rail.png");
         textureSelected = new Texture("rail_selected.png");
@@ -28,6 +30,15 @@ public class Rail {
     }
 
     public void update(float delta) {
+
+        float mX = Gdx.input.getX();
+        float mY = Gdx.graphics.getHeight()-Gdx.input.getY();
+        double deltaX = Math.abs(pos.x+8-mX);
+        double deltaY = Math.abs(pos.y+8-mY);
+        double dist = Math.sqrt(Math.pow(deltaX, 2)+Math.pow(deltaY, 2));
+        selected = dist < 20;
+
+
         if(selected) image.setDrawable(new SpriteDrawable(new Sprite(textureSelected)));
         else image.setDrawable(new SpriteDrawable(new Sprite(texture)));
     }
@@ -38,6 +49,10 @@ public class Rail {
 
     public void render(SpriteBatch batch) {
         image.draw(batch,1);
+    }
+
+    public boolean isSelected() {
+        return selected;
     }
 
 

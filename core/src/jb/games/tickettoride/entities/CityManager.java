@@ -11,12 +11,14 @@ public class CityManager {
     private final List<City> cities;
     private final Map<City, List<RailRoad>> railRoads;
     private final List<RailRoad> allRails;
+    private List<Rail> tempRails = new ArrayList<>();
 
 
     private boolean entitySelected;
 
     public CityManager() {
 
+        tempRails = new ArrayList<>();
         cities = new ArrayList<>();
         railRoads = new HashMap<>();
         allRails = new ArrayList<>();
@@ -45,10 +47,7 @@ public class CityManager {
         }
     }
 
-    public void createCity(float x, float y) {
-        City city = new City(x,y,"temp");
-        cities.add(city);
-    }
+
 
     private void createRailRoads() {
         for(City city : cities) {
@@ -87,6 +86,10 @@ public class CityManager {
             railRoad.update(delta);
             if(railRoad.isSelected()) entitySelected = true;
         }
+        for(Rail rail : tempRails) {
+            rail.update(delta);
+            if(rail.isSelected()) entitySelected = true;
+        }
     }
 
     public void render(SpriteBatch batch) {
@@ -96,6 +99,9 @@ public class CityManager {
 
         for(RailRoad railRoad : allRails) {
             railRoad.render(batch);
+        }
+        for(Rail rail : tempRails) {
+            rail.render(batch);
         }
 
     }
@@ -127,7 +133,23 @@ public class CityManager {
         return null;
     }
 
+
+    ////////////////////////
+    ////////DEV TOOLS///////
+    ///////////////////////
+
+
     public void deleteCity(City city) {
         cities.remove(city);
+    }
+
+    public void createCity(float x, float y) {
+        City city = new City(x,y,"temp");
+        cities.add(city);
+    }
+
+    public void createRail(float x, float y) {
+        Rail rail = new Rail(x,y,0);
+        tempRails.add(rail);
     }
 }

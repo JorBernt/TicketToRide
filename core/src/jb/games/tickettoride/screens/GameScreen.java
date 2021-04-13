@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import jb.games.tickettoride.GameLauncher;
 import jb.games.tickettoride.entities.CityLoader;
 import jb.games.tickettoride.entities.CityManager;
+import jb.games.tickettoride.tools.DevTools;
 import jb.games.tickettoride.tools.TextInputListener;
 
 public class GameScreen implements Screen {
@@ -24,8 +25,11 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private final OrthographicCamera camera;
 
+    private DevTools devTools;
+
 
     public GameScreen(SpriteBatch batch, GameLauncher gameFile) {
+
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -36,7 +40,9 @@ public class GameScreen implements Screen {
         font = new BitmapFont();
 
         cityManager = new CityManager();
-        bg = new Texture("map.png");
+        devTools = new DevTools(cityManager);
+
+        bg = new Texture("map_overlay.png");
 
     }
     @Override
@@ -52,29 +58,10 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-            CityLoader.saveCities("Cities", cityManager.getCities());
-        }
 
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-            if(cityManager.isEntitySelected()) {
-                cityManager.deleteCity(cityManager.getSelectedCity());
-            }
-            else {
-                cityManager.createCity(Gdx.input.getX()-8, Gdx.graphics.getHeight()-Gdx.input.getY()-8);
-            }
-
-        }
-
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
-            if(cityManager.isEntitySelected()) {
-                TextInputListener listener = new TextInputListener();
-                listener.addCity(cityManager.getSelectedCity());
-                Gdx.input.getTextInput(listener, "Add city name", "", "City name");
-            }
-        }
 
         cityManager.update(delta);
+        devTools.update(delta);
         batch.begin();
 
         batch.draw(bg, 0,0);
@@ -85,7 +72,7 @@ public class GameScreen implements Screen {
 
         }
         //font.draw(batch, Gdx.input.getX()+" " +  (Gdx.graphics.getHeight()-Gdx.input.getY()),Gdx.input.getX()+10, Gdx.graphics.getHeight()-Gdx.input.getY());
-
+        font.draw(batch, devTools.getDevMode(),100, 100);
         batch.end();
 
     }
