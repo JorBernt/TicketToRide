@@ -1,6 +1,11 @@
 package jb.games.tickettoride.entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import jb.games.tickettoride.tools.DevTools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +22,6 @@ public class CityManager {
     private boolean entitySelected;
 
     public CityManager() {
-
         tempRails = new ArrayList<>();
         cities = new ArrayList<>();
         railRoads = new HashMap<>();
@@ -148,8 +152,7 @@ public class CityManager {
         cities.add(city);
     }
 
-    public void createRail(float x, float y) {
-        Rail rail = new Rail(x,y,0);
+    public void createRail(Rail rail) {
         tempRails.add(rail);
     }
 }

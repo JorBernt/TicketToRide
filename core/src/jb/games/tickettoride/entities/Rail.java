@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
 
 
 public class Rail {
@@ -25,8 +26,13 @@ public class Rail {
         texture = new Texture("rail.png");
         textureSelected = new Texture("rail_selected.png");
         image = new Image(texture);
+        image.setOrigin(Align.center);
         image.setRotation(rotation);
         image.setPosition(x,y);
+    }
+
+    public void setRotation(float angle) {
+        image.setRotation(angle);
     }
 
     public void update(float delta) {
@@ -53,6 +59,14 @@ public class Rail {
 
     public boolean isSelected() {
         return selected;
+    }
+
+    public Vector2 getPos() {
+        return new Vector2(image.getX(), image.getY());
+    }
+
+    public void setPos(float x, float y) {
+        image.setPosition(x,y);
     }
 
 
