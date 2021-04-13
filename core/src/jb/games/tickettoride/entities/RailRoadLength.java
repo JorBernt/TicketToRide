@@ -4,10 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum RailRoadLength {
-    LONDON("BERLIN 2"),
-    BERLIN("LONDON 2","MOSCOW 4","PARIS 5"),
-    MOSCOW("BERLIN 4","PARIS 6"),
-    PARIS("MOSCOW 6", "BERLIN 5");
+    FRANKFURT("");
 
     private final Map<String, Integer> railDistance;
 

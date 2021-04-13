@@ -1,0 +1,284 @@
+[
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: Frankfurt
+	x: 785
+	y: 620
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 855
+	y: 565
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 876
+	y: 447
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 886
+	y: 336
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 994
+	y: 307
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 935
+	y: 174
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 740
+	y: 371
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 772
+	y: 487
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 629
+	y: 556
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 549
+	y: 364
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 563
+	y: 248
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 425
+	y: 259
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 337
+	y: 233
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 423
+	y: 167
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 564
+	y: 610
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 452
+	y: 575
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 700
+	y: 722
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 670
+	y: 658
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 580
+	y: 723
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 493
+	y: 913
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: Copenhagen
+	x: 892
+	y: 839
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 799
+	y: 706
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 923
+	y: 688
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1019
+	y: 935
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1127
+	y: 699
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1066
+	y: 788
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1166
+	y: 898
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1377
+	y: 905
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1496
+	y: 755
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1389
+	y: 723
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1262
+	y: 729
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1310
+	y: 638
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1477
+	y: 572
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1529
+	y: 506
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1519
+	y: 396
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1498
+	y: 239
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1397
+	y: 215
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1305
+	y: 281
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1252
+	y: 182
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1147
+	y: 211
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1167
+	y: 352
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1084
+	y: 363
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1246
+	y: 430
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 985
+	y: 435
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1055
+	y: 518
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 999
+	y: 546
+}
+{
+	class: jb.games.tickettoride.entities.CityReader
+	name: temp
+	x: 1410
+	y: 413
+}
+]

@@ -27,7 +27,7 @@ public class CityManager {
         createRailRoads();
     }
 
-    private void createCities() {
+   /* private void createCities() {
         for(Cities cityTemplate : Cities.values()) {
             City city = new City(cityTemplate.getX(), cityTemplate.getY(), cityTemplate.getName());
             cities.add(city);
@@ -35,6 +35,19 @@ public class CityManager {
         for(City city : cities) {
             city.addAdjacent(cities);
         }
+    }*/
+
+    private void createCities() {
+        cities.addAll(CityLoader.loadCities("Cities",cities));
+        System.out.println(cities.size());
+        for (City city : cities) {
+            System.out.println(city.getName());
+        }
+    }
+
+    public void createCity(float x, float y) {
+        City city = new City(x,y,"temp");
+        cities.add(city);
     }
 
     private void createRailRoads() {
@@ -103,5 +116,18 @@ public class CityManager {
             }
         }
         return "";
+    }
+
+    public City getSelectedCity() {
+        for(City city : cities) {
+            if(city.isSelected()) {
+                return city;
+            }
+        }
+        return null;
+    }
+
+    public void deleteCity(City city) {
+        cities.remove(city);
     }
 }
