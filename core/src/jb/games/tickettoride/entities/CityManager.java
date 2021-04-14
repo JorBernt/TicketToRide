@@ -49,6 +49,10 @@ public class CityManager {
         return cities;
     }
 
+    public List<RailRoad> getRailRods() {
+        return allRails;
+    }
+
     public void update(float delta) {
         entitySelected = false;
 
@@ -134,8 +138,6 @@ public class CityManager {
         }
         allRails.add(railRoad);
         tempRails.clear();
-        System.out.println(allRails.size());
-
     }
 
 

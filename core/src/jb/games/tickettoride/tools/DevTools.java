@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import jb.games.tickettoride.entities.City;
-import jb.games.tickettoride.entities.CityLoader;
-import jb.games.tickettoride.entities.CityManager;
-import jb.games.tickettoride.entities.Rail;
+import jb.games.tickettoride.entities.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,7 +55,8 @@ public class DevTools {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
             CityLoader.saveCities("Cities", cityManager.getCities());
-            System.out.println("Cities saved");
+            RailLoader.saveRails("RailRoads", cityManager.getRailRods());
+            System.out.println("Cities and rails saved.");
         }
 
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {

@@ -1,5 +1,6 @@
 package jb.games.tickettoride.entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class RailReader {
 
     public String departureCity;
     public String destinationCity;
-    public List<Rail> rails;
+    public List<String> rails;
     public HashMap<String, String> data;
 
     public RailReader() {}
@@ -15,10 +16,24 @@ public class RailReader {
     public RailReader(City departureCity, City destinationCity, List<Rail> rails) {
         this.departureCity = departureCity.getName();
         this.destinationCity = destinationCity.getName();
-        this.rails = rails;
+        this.rails = new ArrayList<>();
+        for(Rail rail : rails) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("X: " + rail.getX() +", "+
+                      "Y: " + rail.getY()  +", "+
+                      "Rotation: " + rail.getRotation());
+            this.rails.add(sb.toString());
+        }
     }
 
 
+    public List<String> getRails() {
+        return rails;
+    }
+
+    public void setRails(List<String> rails) {
+        this.rails = rails;
+    }
 
     public String getDepartureCity() {
         return departureCity;
