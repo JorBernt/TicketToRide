@@ -30,18 +30,8 @@ public class CityManager {
         entitySelected = false;
 
         createCities();
-        createRailRoads();
     }
 
-   /* private void createCities() {
-        for(Cities cityTemplate : Cities.values()) {
-            City city = new City(cityTemplate.getX(), cityTemplate.getY(), cityTemplate.getName());
-            cities.add(city);
-        }
-        for(City city : cities) {
-            city.addAdjacent(cities);
-        }
-    }*/
 
     private void createCities() {
         cities.addAll(CityLoader.loadCities("Cities",cities));
@@ -53,27 +43,7 @@ public class CityManager {
 
 
 
-    private void createRailRoads() {
-        for(City city : cities) {
-            List<RailRoad> rails = new ArrayList<>();
-            for(City adjacent : city.getAdjacentCities()) {
-                if(railRoads.containsKey(adjacent)) {
-                    for(RailRoad rr : railRoads.get(adjacent)) {
-                        if(rr.getDeparture() == adjacent && rr.getDestinationCity() == city) {
-                            rails.add(rr);
-                            break;
-                        }
-                    }
-                }
-                else {
-                    RailRoad railRoad = new RailRoad(city, adjacent, RailRoadLength.valueOf(city.getName()).getRailDistance(adjacent.getName()));
-                    rails.add(railRoad);
-                    allRails.add(railRoad);
-                }
-            }
-            railRoads.put(city, rails);
-        }
-    }
+
 
     public List<City> getCities() {
         return cities;
@@ -135,6 +105,37 @@ public class CityManager {
             }
         }
         return null;
+    }
+
+    public Vector2 getTempRail() {
+        return tempRails.get(tempRails.size()-1).getEndPos();
+    }
+
+    public void saveRails(List<City> cityPoints) {
+        City start = cityPoints.get(0);
+        City end = cityPoints.get(1);
+        RailRoad railRoad = new RailRoad(start, end, tempRails);
+        if(!railRoads.containsKey(start)) {
+            List<RailRoad> rr = new ArrayList<>();
+            rr.add(railRoad);
+            railRoads.put(start, rr);
+        }
+        else {
+            railRoads.get(start).add(railRoad);
+        }
+
+        if(!railRoads.containsKey(end)) {
+            List<RailRoad> rr = new ArrayList<>();
+            rr.add(railRoad);
+            railRoads.put(end, rr);
+        }
+        else {
+            railRoads.get(end).add(railRoad);
+        }
+        allRails.add(railRoad);
+        tempRails.clear();
+        System.out.println(allRails.size());
+
     }
 
 

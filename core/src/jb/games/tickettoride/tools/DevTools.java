@@ -3,9 +3,15 @@ package jb.games.tickettoride.tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import jb.games.tickettoride.entities.City;
 import jb.games.tickettoride.entities.CityLoader;
 import jb.games.tickettoride.entities.CityManager;
 import jb.games.tickettoride.entities.Rail;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class DevTools {
@@ -13,29 +19,41 @@ public class DevTools {
     private CityManager cityManager;
     private DevMode devMode;
     private static Vector2 mousePos;
-    private Rail rail;
+
+    private boolean railJustCreated;
+    private String railCreationInfo;
+
+    private List<City> cityPoints;
 
 
     public enum DevMode {
-        CITY, RAIL
+        CITY, RAIL, CITYSELECT;
     }
 
     public DevTools(CityManager cityManager) {
-        rail = new Rail(0,0,0);
+        cityPoints = new ArrayList<>();
         mousePos = new Vector2();
         this.cityManager = cityManager;
         devMode = DevMode.CITY;
+        railJustCreated = false;
+        railCreationInfo ="";
     }
 
 
 
     public void update(float delta) {
 
+        if(devMode == DevMode.CITYSELECT) {
+            railCreationInfo = "\nSelected cities : " + (cityPoints.isEmpty()?"":cityPoints.get(0).getName());
+        }
+
         mousePos.x = Gdx.input.getX();
         mousePos.y = Gdx.graphics.getHeight()-Gdx.input.getY();
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.X)) {
-            devMode = devMode == DevMode.CITY? DevMode.RAIL:DevMode.CITY;
+            if(devMode == DevMode.CITY) devMode = DevMode.RAIL;
+            else if(devMode == DevMode.RAIL) devMode = DevMode.CITYSELECT;
+            else if(devMode == DevMode.CITYSELECT) devMode = DevMode.CITY;
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
@@ -46,22 +64,24 @@ public class DevTools {
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             switch (devMode) {
                 case CITY: addOrDeleteCity();break;
-                case RAIL: addRail();break;
+                case RAIL: addRail(DevTools.getMouse());break;
+                case CITYSELECT : selectCity();break;
             }
-        }
-
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && devMode == DevMode.RAIL) {
-
-            cityManager.createRail(rail);
-            rail.setRotation(getAngle(rail.getPos(), mousePos));
         }
 
         if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
             switch (devMode) {
                 case CITY: renameCity();break;
-                case RAIL: addRail();break;
+                case RAIL: addRail(DevTools.getMouse());break;
             }
         }
+
+        if(railJustCreated && Gdx.input.isKeyJustPressed(Input.Keys.D)) {
+            railJustCreated = false;
+            addRail(cityManager.getTempRail());
+        }
+
+
     }
 
     private void addOrDeleteCity() {
@@ -73,8 +93,22 @@ public class DevTools {
         }
     }
 
-    private void addRail() {
-        rail.setPos(mousePos.x, mousePos.y);
+    private void addRail(Vector2 pos) {
+        if(!railJustCreated){
+            cityManager.createRail(new Rail(pos.x, pos.y, 0));
+            railJustCreated = true;
+        }
+    }
+
+    private void selectCity() {
+        if(cityPoints.size() < 2) {
+            cityPoints.add(cityManager.getSelectedCity());
+        }
+        if(cityPoints.size() == 2){
+            cityManager.saveRails(cityPoints);
+            cityPoints.clear();
+            railJustCreated = false;
+        }
     }
 
     public static float getAngle(Vector2 origin, Vector2 target) {
@@ -92,7 +126,7 @@ public class DevTools {
     }
 
     public String getDevMode() {
-        return devMode.toString();
+        return devMode.toString()+(devMode==DevMode.CITYSELECT?railCreationInfo:"");
     }
 
     public void renameCity() {
@@ -102,5 +136,17 @@ public class DevTools {
             Gdx.input.getTextInput(listener, "Add city name", cityManager.getSelectedCity().getName(), "" +
                     "");
         }
+    }
+
+    public static double getDistance(Vector2 start, Vector2 end) {
+        return Math.sqrt(Math.pow(Math.abs(start.x-end.x), 2)+Math.pow(Math.abs(end.y- start.y), 2));
+    }
+
+    public static double getDeltaX(Vector2 start, Vector2 end) {
+        return Math.sqrt(Math.pow(Math.abs(start.x-end.x), 2));
+    }
+
+    public static double getDeltaY(Vector2 start, Vector2 end) {
+        return Math.sqrt(Math.pow(Math.abs(end.y- start.y), 2));
     }
 }

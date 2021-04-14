@@ -41,9 +41,7 @@ public class GameScreen implements Screen {
 
         cityManager = new CityManager();
         devTools = new DevTools(cityManager);
-
-        bg = new Texture("map_overlay.png");
-
+        bg = new Texture("map.png");
     }
     @Override
     public void show() {
