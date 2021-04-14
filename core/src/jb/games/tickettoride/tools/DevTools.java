@@ -56,11 +56,7 @@ public class DevTools {
             rail.setRotation(getAngle(rail.getPos(), mousePos));
         }
 
-
-
         if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
-
-
             switch (devMode) {
                 case CITY: renameCity();break;
                 case RAIL: addRail();break;
@@ -78,7 +74,7 @@ public class DevTools {
     }
 
     private void addRail() {
-        rail.setPos(mousePos.x-8, mousePos.y-8);
+        rail.setPos(mousePos.x, mousePos.y);
     }
 
     public static float getAngle(Vector2 origin, Vector2 target) {
@@ -103,7 +99,8 @@ public class DevTools {
         if(cityManager.isEntitySelected() && cityManager.getSelectedCity() != null) {
             TextInputListener listener = new TextInputListener();
             listener.addCity(cityManager.getSelectedCity());
-            Gdx.input.getTextInput(listener, "Add city name", "", "City name");
+            Gdx.input.getTextInput(listener, "Add city name", cityManager.getSelectedCity().getName(), "" +
+                    "");
         }
     }
 }
